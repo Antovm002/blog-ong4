@@ -6,7 +6,7 @@ SETTINGFILES_DIRS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
+        'ENGINE': 'mysql',
         'NAME':'blogong4',
         'USER': 'antitovm',
         'PASSWORD': 'antito48962620',
