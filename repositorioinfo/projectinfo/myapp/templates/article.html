@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {%extends 'base.html' %}
+    
+    {%block title%} {{post.title_tag}} {%endblock%}
+
+    {%block content%}
+
+    <h1>{{post.titulo}}</h1>
+    <small>By: {{post.author.first_name}} {{post.author.last_name}} 
+        <a href="{% url 'update' post.pk %}">  -  | Editar |</a></small>
+        <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+    <br>
+    <br/>
+    {{post.contenido}}
+
+    <br>
+    <a href="{%url 'home' %}" class="btn btn-secondary">Atrás</a>
+    {%endblock%}
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {%extends 'base.html' %}
+    {%block title%} Borrar publicación {%endblock%}
+    {%block content%}
+
+    <h1>Eliminar publicación</h1>
+    <br>
+    <h4>Eliminar: {{ post.titulo }}</h4>
+    <br>
+    <div class="form-group"></div>
+        <table>
+            <form method="POST">
+                {% csrf_token %}
+                <strong>Está seguro de eliminar "{{post.titulo}}"?</strong>
+                <br><br>
+
+        </table>
+        <button class="btn btn-dark">Eliminar</button>
+    </div>
+
+    {%endblock%}
+
+</body>
+</html>
+

@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 <body>
-    <h1>post</h1>
+    {%extends 'base.html' %}
+
+    {%block content%}
+
+    <h1>Publicaciones</h1>
     <ul>
     {% for post in object_list %}
-        <li>{{ post.title }} - {{ post.author }} <br/>
-        {{ post.body}}</li>
+        <li><a href= "{% url 'article-detail' post.pk %}">{{ post.titulo }}</a>
+              - {{ post.author.first_name }} {{ post.author.last_name }} 
+              <small><a href="{% url 'update' post.pk %}">| Editar |</a></small>
+              <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small>
+              <br/></li>
 
     {% endfor%}
 
+    {%endblock%}
 
 </body>
 </html>
