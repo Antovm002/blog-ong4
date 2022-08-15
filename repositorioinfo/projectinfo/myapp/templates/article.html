@@ -27,15 +27,13 @@
     <br/>
     
     {{post.contenido}}
-
     <br>
-    <a href="{%url 'home' %}" class="btn btn-secondary">Atrás</a>
-
-    <br><br>
     <hr>
-    <br>
+    
     <form action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token %}
+
+        <a href="{%url 'home' %}" class="btn btn-info">Atrás</a>
     {% if user.is_authenticated%}
         {% if liked %}
             <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger">Ya no me gusta</button> 
