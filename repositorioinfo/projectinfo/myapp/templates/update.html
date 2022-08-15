@@ -10,16 +10,30 @@
     {%block title%} Actualizar publicación {%endblock%}
     {%block content%}
 
-    <h1>Actualizar publicación</h1>
-    <br><br>
-    <div class="form-group"></div>
-        <table>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_table }}
-        </table>
-        <button class="btn btn-dark">Actualizar</button>
-    </div>
+    {% if user.is_authenticated %}
+        
+        {% if user.id == post.author.id %}
+
+            <h1>Actualizar publicación</h1>
+            <br><br>
+            <div class="form-group"></div>
+                <table>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                </table>
+                <button class="btn btn-dark">Actualizar</button>
+            </div>
+
+        {% else %} 
+            <h1>Inicie sesión para realizar esta acción...</h1>
+        {% endif %}
+
+    {% else %}
+
+        <h1>Inicie sesión para realizar esta acción...</h1>
+
+    {% endif %}
 
     {%endblock%}
 

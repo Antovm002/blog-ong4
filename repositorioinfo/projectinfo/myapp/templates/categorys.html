@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {%extends 'base.html' %}
+
+    {%block content%}
+
+    {% if category_posts %}
+
+        <h1>{{categoria}}:</h1>
+
+    
+ 
+        <ul>
+        {% for post in category_posts %}
+
+        <li><a href= "{% url 'article-detail' post.pk %}">{{ post.titulo }}</a>
+            - {{ post.categoria }} - {{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_date}} 
+
+            {% if user.is_authenticated %}
+            
+            <small><a href="{% url 'update' post.pk %}">- | Editar |</a></small>
+            <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small>
+            <br/></li>
+            {% endif %}
+    
+
+        {% endfor %}
+        </ul>
+
+    {% else %}
+    <h1>No existen publicaciones en esta categoría...</h1>
+    {% endif %}
+
+    {%endblock%}
+
+</body>
+</html>
+

@@ -19,9 +19,58 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_post' %}">CREAR PUBLICACION</a>
+            
+            {% if categoria_menu %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categorias
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                {%for item in categoria_menu %}
+                <a class="dropdown-item" href="{% url 'add_category' item|slugify %}">{{item}}</a>
+                
+                <br>
+                {%endfor%}
+
+              
+              </div>
             </li>
+
+            {%else%}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'category_list' %}">Categorias</a>
+              </li>
+            
+            {% endif %}
+
+            {% if user.is_authenticated %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_post' %}">Publicar</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_category' %}">Añadir Categoría</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+
+            {% endif %}
+              
           </ul>
         </div>
       </nav>

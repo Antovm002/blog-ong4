@@ -7,12 +7,12 @@
 </head>
 <body>
     {%extends 'base.html' %}
-    {%block title%} Crea nueva pubicación! {%endblock%}
+    {%block title%} Añade una categoría {%endblock%}
     {%block content%}
 
     {% if user.is_authenticated %}
 
-        <h1>Añadir publicación...</h1>
+        <h1>Añadir categoria...</h1>
         <br><br>
         <div class="form-group"></div>
             <table>
@@ -20,13 +20,8 @@
                     {% csrf_token %}
                     {{ form.as_table }}
             </table>
-            <button class="btn btn-dark">Publicar</button>
+            <button class="btn btn-dark">Añadir</button>
         </div>
-
-        <script>
-            var name= "{{ user.id }}";
-            document.getElementById("admin").value = name;
-        </script>
 
     {% else %}
     

@@ -13,15 +13,45 @@
     {%block content%}
 
     <h1>{{post.titulo}}</h1>
-    <small>By: {{post.author.first_name}} {{post.author.last_name}} 
-        <a href="{% url 'update' post.pk %}">  -  | Editar |</a></small>
-        <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+    <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
+
+        {% if user.is_authenticated%}
+            {% if user.id == post.author.id %}
+                <a href="{% url 'update' post.pk %}">- | Editar |</a></small>
+                <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+            {% endif %}
+        
+        {% endif %}
+
     <br>
     <br/>
+    
     {{post.contenido}}
 
     <br>
     <a href="{%url 'home' %}" class="btn btn-secondary">Atrás</a>
+
+    <br><br>
+    <hr>
+    <br>
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+    {% if user.is_authenticated%}
+        {% if liked %}
+            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger">Ya no me gusta</button> 
+
+        {% else %}
+
+            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-success">Me gusta</button>
+            
+        {% endif %}
+        
+    {% else %}
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        para dar "Me gusta"
+    {% endif %}
+        |  {{ total_likes }} Me gusta
+    </form>
     {%endblock%}
 </body>
 </html>

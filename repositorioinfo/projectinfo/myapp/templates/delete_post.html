@@ -10,20 +10,34 @@
     {%block title%} Borrar publicación {%endblock%}
     {%block content%}
 
-    <h1>Eliminar publicación</h1>
-    <br>
-    <h4>Eliminar: {{ post.titulo }}</h4>
-    <br>
-    <div class="form-group"></div>
-        <table>
-            <form method="POST">
-                {% csrf_token %}
-                <strong>Está seguro de eliminar "{{post.titulo}}"?</strong>
-                <br><br>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+        
 
-        </table>
-        <button class="btn btn-dark">Eliminar</button>
-    </div>
+            <h1>Eliminar publicación</h1>
+            <br>
+            <h4>Eliminar: {{ post.titulo }}</h4>
+            <br>
+            <div class="form-group"></div>
+                <table>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <strong>Está seguro de eliminar "{{post.titulo}}"?</strong>
+                        <br><br>
+
+                </table>
+                <button class="btn btn-dark">Eliminar</button>
+            </div>
+
+            {% else %}
+                <h1>Inicie sesión para realizar esta acción...</h1>
+            {% endif %}
+        
+    {% else %}
+    
+        <h1>Inicie sesión para realizar esta acción...</h1>
+
+        {% endif %}
 
     {%endblock%}
 
