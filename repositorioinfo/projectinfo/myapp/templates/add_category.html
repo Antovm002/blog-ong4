@@ -9,26 +9,32 @@
     {%extends 'base.html' %}
     {%block title%} Añade una categoría {%endblock%}
     {%block content%}
-
-    {% if user.is_authenticated %}
-
-        <h1>Añadir categoria...</h1>
-        <br><br>
-        <div class="form-group"></div>
-            <table>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_table }}
-            </table>
-            <br>
-            <button class="btn btn-success">Añadir</button>
-        </div>
-
-    {% else %}
     
-        <h1>Inicie sesión para realizar esta acción...</h1>
+    <!-- Cargar los tags de crispy -->
+    {% load crispy_forms_tags %}
 
-    {% endif %}
+            
+        {% if user.is_authenticated %}
+
+            <h1 class="alert alert-success">Añadir categoría</h1>
+            <br>
+            <div class="form-group"></div>
+                <table>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <!-- Usar el filtor de crispy -->
+                        {{form|crispy}}
+                </table>
+                <br>
+                <a href="{%url 'home' %}" class="btn btn-dark">Atrás</a>
+                <button class="btn btn-primary">Añadir</button>
+            </div>
+
+        {% else %}
+        
+            <h1>Inicie sesión para realizar esta acción...</h1>
+
+        {% endif %}
 
     {%endblock%}
 

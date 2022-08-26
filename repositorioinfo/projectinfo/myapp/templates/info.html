@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {%extends 'base.html' %}
+    
+    {%block title%}Información de la organización{%endblock%}
+
+    {%block content%}
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">U.E.G.P N°161 “Instituto Barranqueras”</h4>
+            <br>
+          <p class="card-text"><small class="text-muted">Dirección: Diagonal Eva Perón 425</small></p>
+        </div>
+        <img class="card-img-bottom" src="../../static/fondo.png" alt="Card image cap">
+
+        <div class="card-body">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Información de contacto.
+                      </button>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p>Instagram: <a href="https://www.instagram.com/institutobarranqueras/">institutobarranqueras</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/institutobarranqueras">Instituto Barranqueras</a></p>
+                        <p>Contacto: Gustavo Toranzo. - cel: 3482 60-3586</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Equipo Directivo de: U.E.G.P N°161 “Instituto Barranqueras”.
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p class="card-text">Forman parte del Equipo Directivo:
+                            <ul>
+                                <li>Rector: Gustavo Toranzo.</li>
+                                <li>Secretario Académico: Raúl Peñaflor.</li>
+                                <li>Director de Estudio Economía Social y Desarrollo Local: Enrique Zarabozo.</li>
+                                <li>Directora de Estudios Gestión Ambiental: Maximiliano Fernández.</li>
+                                <li>Representante Legal: Adriana Azcona</li>
+                                <li>Bedeles: Malvinas Linda Ojeda, González Susana de la Cruz.</li>
+                            </ul>
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Misión y visión de: U.E.G.P N°161 “Instituto Barranqueras”.
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p class="card-text">Somos la <b>Primera Institución</b> en implementar la formación <b>Técnica en Economía Social y Desarrollo Local en la Provincia del Chaco</b> y actualmente la Única en el País que dicta esta especialización complementada con conocimientos en derechos portuarios y aduaneros, comercio internacional y énfasis en el manejo técnico de los idiomas Castellano, Inglés y Portugués.
+                            <br>
+                            También desde la formación de sus cuadros técnicos en <b>Gestión Ambiental</b> hemos aportado
+                            desde profesionales que no solo fueron los diseñadores de plantas de reciclado de residuos sólidos urbanos, sino que hoy mismo las conducen; hasta profesionales que permanentemente diseñan, implementan y gestionan en la provincia proyectos nacionales e internacionales con financiamiento externo.
+                            <br>
+                            <b>Mantenemos Convenios de colaboración interinstitucional con Municipios de la Provincia del Chaco</b> sino también con la comuna de la Provincia de Santa Fe como de Villa Guillermina.
+                            <br>
+                            Nuestras carreras tienen distintas modalidades de cursado y hemos implementando una modelo Académico Virtual y dar mayor soporte digital a todos nuestros alumnos. Esto lo hacemos con esfuerzo e iniciativa propia para justamente convertirnos en referencia de excelencia académica y proyección profesional dentro del campo Académico Superior de la zona Sur del Gran Resistencia.
+                            <br>
+                            Para este 2021 el M.E.C.C.yT ha dictado la resolución ministerial, por la que autoriza a la <b>U.E.G.P. No161 “Instituto BARRANQUERAS”</b> iniciar el dictado, sin subvención, de las Tecnicaturas Superiores en:
+                            <b>
+                                <ol>
+                                    <li>Administración Municipal</li>
+                                    <li>Desarrollo de Software</li>
+                                </ol>
+                            </b>
+                            Esta trascendente autorización alcanzada coloca a la Institución frente a un hermoso desafío que para el cumplimiento de las metas que requiere la implementación de las mismas, se toma la decisión de conformar la U.A.C. (Unidad Administrativa Contable)
+                            <br></br>
+                            Desde el enfoque en la cuestión Administrativa Contable, se pretende de esta Unidad de Gestión obtener la información necesaria para planificar. Asimismo se apunta a la obtención de esta información otorgando más importancia a los datos cualitativos y a los costes, utilizándolos en el análisis de las decisiones como estimaciones para predecir el futuro de la esta línea de Servicio.
+                        </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    {%endblock%}
+</body>
+</html>

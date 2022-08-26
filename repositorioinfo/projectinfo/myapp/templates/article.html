@@ -12,44 +12,64 @@
 
     {%block content%}
 
-    <h1>{{post.titulo}}</h1>
-    <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
+        <h1 class="alert alert-primary">{{post.titulo}}</h1>
+        <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
 
-        {% if user.is_authenticated%}
-            {% if user.id == post.author.id %}
-                <a href="{% url 'update' post.pk %}">- | Editar |</a></small>
-                <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+            {% if user.is_authenticated%}
+                {% if user.id == post.author.id %}
+                    <a href="{% url 'update' post.pk %}">- | Editar |</a></small>
+                    <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+                {% endif %}
+            
             {% endif %}
-        
+
+        <br>
+        {% if post.header_image %}
+            <img src="{{ post.header_image.url }}">
         {% endif %}
+        <br>
+        {{post.contenido}}
+        <br>
+        <hr size="8px" color="gray"/>
+        
+        <form action="{% url 'like_post' post.pk %}" method="POST">
+            {% csrf_token %}
 
-    <br>
-    <br/>
-    
-    {{post.contenido}}
-    <br>
-    <hr>
-    
-    <form action="{% url 'like_post' post.pk %}" method="POST">
-        {% csrf_token %}
+            <a href="{%url 'home' %}" class="btn btn-dark">Atrás</a>
+        {% if user.is_authenticated%}
+            {% if liked %}
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger">Ya no me gusta</button> 
 
-        <a href="{%url 'home' %}" class="btn btn-info">Atrás</a>
-    {% if user.is_authenticated%}
-        {% if liked %}
-            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger">Ya no me gusta</button> 
+            {% else %}
+
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-success">Me gusta</button>
+                
+            {% endif %}
+            
+        {% else %}
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+            para dar "Me gusta"
+        {% endif %}
+            |  {{ total_likes }} Me gusta
+        </form>
+        <hr size="8px" color="gray"/>
+        
+        <h2>Comentarios:</h2>
+
+        <a href="{% url 'add_comment' post.pk %}">Añade un comentario..</a>
+        <br>
+        {% if not post.comments.all %}
+            Aun no hay comentarios...
 
         {% else %}
+            {% for comment in post.comments.all %}
+                <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+                <br>
+                {{ comment.body }}
 
-            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-success">Me gusta</button>
-            
+                <br><br>
+            {% endfor %}
         {% endif %}
-        
-    {% else %}
-        <a href="{% url 'login' %}">Iniciar sesión</a>
-        para dar "Me gusta"
-    {% endif %}
-        |  {{ total_likes }} Me gusta
-    </form>
     {%endblock%}
 </body>
 </html>

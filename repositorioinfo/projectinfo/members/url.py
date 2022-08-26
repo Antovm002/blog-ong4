@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import UserRegister, UserEdit, ChangePassword
-from django.contrib.auth import views as auth_views
+#from django.contrib.auth import views as auth_views
 from . import views
 urlpatterns = [
     path("register/", UserRegister.as_view(), name="register"),

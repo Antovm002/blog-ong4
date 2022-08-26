@@ -9,16 +9,20 @@
     {%extends 'base.html' %}
     {%block title%} Iniciar sesión {%endblock%}
     {%block content%}
+    {% load crispy_forms_tags %}
 
-    <h1>Iniciar sesión...</h1>
-    <br><br>
+    <h1  class="alert alert-dark">Iniciar sesión:</h1>
+    <br>
     <div class="form-group"></div>
         <table>
             <form method="POST">
                 {% csrf_token %}
-                {{ form.as_table }}
+                {{ form|crispy }}
         </table>
+        <br>
         <button class="btn btn-dark">Iniciar sesión</button>
+        <br>
+        <small>No estás registrado aún? registrate haciendo <a href="{% url 'register' %}"> click aquí</a></small>
     </div>
 
     {%endblock%}

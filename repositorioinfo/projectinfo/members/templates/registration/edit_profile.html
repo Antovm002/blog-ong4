@@ -10,7 +10,7 @@
     {%block title%} Editar perfil {%endblock%}
     {%block content%}
 
-    <h1>Editar perfil...</h1>
+    <h1 class="alert alert-primary">Editar perfil</h1>
     <br>
     <div class="form-group"></div>
         <table>
@@ -19,9 +19,10 @@
                 {{ form.as_table }}
         </table>
         <br>
-        <button class="btn btn-info">Actualizar</button>
+        <a href="{%url 'home' %}" class="btn btn-dark">Atrás</a>
+        <button class="btn btn-primary">Actualizar</button>
     </div>
-    <br><br>
+    <br>
 
     {%endblock%}
 

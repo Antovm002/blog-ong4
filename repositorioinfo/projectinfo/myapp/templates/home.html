@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     {%extends 'base.html' %}
 
     {%block content%}
 
-    <h1>Publicaciones</h1>
-    <ul>
-    {% for post in object_list %}
-        <li><a href= "{% url 'article-detail' post.pk %}">{{ post.titulo }}</a>
-           - <a href="{% url 'add_category' post.categoria|slugify %}"> {{ post.categoria }} </a>   {{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_date}} 
-           
-            {% if user.is_authenticated %}
-                {% if user.id == post.author.id %}
-              
-                    <small><a href="{% url 'update' post.pk %}">- | Editar |</a></small>
-                    <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small>
-                    <br/></li>
-                {% endif %}
-            {% endif %}
+    <a href="{%url 'info' %}" type="button" class="btn btn-info btn-lg btn-block">Información de la Organización</a>
+    <br>
+    <h1 class="alert alert-primary">Publicaciones:</h1>
+    <div class="container px-5 py-2">
+        <ul class="m-0 p-0">
+            {% for post in object_list %}
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne{{ forloop.counter0  }}">
+                            <h5 class="mb-0">
+                                <div class="btn btn-link d-flex" data-toggle="collapse"
+                                    data-target="#collapseOne{{ forloop.counter0  }}" aria-expanded="true"
+                                    aria-controls="collapseOne{{ forloop.counter0  }}">
+                                    <div>{{ post.titulo }}</div>
+                                    <em class="text-secondary ml-auto"><a
+                                            href="{% url 'add_category' post.categoria|slugify %}"> {{ post.categoria }}
+                                        </a> - {{post.post_date}}</em>
+                                </div>
+                            </h5>
+                        </div>
 
-    {% endfor%}
-   </ul>
-    {%endblock%}
+                        <div id="collapseOne{{ forloop.counter0  }}"
+                            class="pl-5 collapse {% if forloop.counter0 == 0 %} show {% endif %}"
+                            aria-labelledby="headingOne{{ forloop.counter0 %}" data-parent="#accordion">
+                            <div class="card-body d-flex flex-column">
+                                <p>{{ post.contenido }}</p>
+
+                                {% if user.is_authenticated %}
+                                {% if user.id == post.author.id %}
+                                <div class="ml-auto">
+                                    <small><a class="btn btn-primary" href="{% url 'update' post.pk %}">Editar</a></small>
+                                    <small><a class="btn btn-danger" href="{% url 'delete' post.pk %}">Eliminar</a></small>
+                                </div>
+                                <br /></li>
+                                {% endif %}
+                                {% endif %}
+                                <div class="d-flex">
+                                    <a a href="{% url 'article-detail' post.pk %}">Detalles</a>
+                                    <em class="ml-auto">Autor: {{ post.author.first_name }} {{ post.author.last_name }}</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor%}
+
+
+        </ul>
+        {%endblock%}
 
 </body>
-</html>
 
+</html>

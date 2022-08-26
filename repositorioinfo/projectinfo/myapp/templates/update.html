@@ -9,18 +9,19 @@
     {%extends 'base.html' %}
     {%block title%} Actualizar publicación {%endblock%}
     {%block content%}
+    {% load crispy_forms_tags %}
 
     {% if user.is_authenticated %}
         
         {% if user.id == post.author.id %}
 
-            <h1>Actualizar publicación</h1>
+            <h1  class="alert alert-success">Actualizar publicación</h1>
             <br><br>
             <div class="form-group"></div>
                 <table>
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form.as_table }}
+                        {{ form|crispy }}
                 </table>
                 <button class="btn btn-dark">Actualizar</button>
             </div>

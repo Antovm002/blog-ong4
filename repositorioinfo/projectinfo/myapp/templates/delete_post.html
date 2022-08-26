@@ -14,7 +14,7 @@
         {% if user.id == post.author.id %}
         
 
-            <h1>Eliminar publicación</h1>
+            <h1  class="alert alert-danger">Eliminar publicación</h1>
             <br>
             <h4>Eliminar: {{ post.titulo }}</h4>
             <br>
@@ -26,7 +26,8 @@
                         <br><br>
 
                 </table>
-                <button class="btn btn-dark">Eliminar</button>
+                <a href="{%url 'home' %}" class="btn btn-dark">Atrás</a>
+                <button class="btn btn-danger">Eliminar</button>
             </div>
 
             {% else %}

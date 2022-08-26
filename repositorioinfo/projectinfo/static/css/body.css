@@ -1,0 +1,8 @@
+.glass {
+    box-shadow: 0 4px 30px rgba(160, 160, 160, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+body {
+    height: 100vh !important;
+}

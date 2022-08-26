@@ -1,15 +1,18 @@
+from urllib import request
 from django.shortcuts import render, get_object_or_404
 from django.template import ContextPopException
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category
-from .forms import PostForm, EditForm
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 
-
 #def home (request):
     #return render(request, "home.html", {})
+
+def Info(request):
+    return render(request, "info.html")
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get("post_id"))
@@ -75,6 +78,13 @@ class AddPost(CreateView):
         return context
     #fields = ("titulo", "author", "contenido")
 
+class AddComment(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "add_comment.html"
+    #fields = "__all__"
+    success_url = reverse_lazy("home")
+
 class AddCategory(CreateView):
     model = Category
     #form_class = PostForm
@@ -90,7 +100,6 @@ class Update(UpdateView):
     model = Post
     form_class = EditForm
     template_name = "update.html"
-    fields = ["titulo", "contenido"]
 
 class Delete(DeleteView):
     model = Post

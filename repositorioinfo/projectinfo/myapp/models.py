@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
+from django.db import models
+
+class CrispyModel(models.Model):
+  songs = models.CharField(max_length=500)
+  name_of_artist = models.CharField(max_length=500)
+  number_of_awards = models.IntegerField()
+  def __str__(self):
+    self.songs
 
 class Category(models.Model):
     name= models.CharField(max_length=255)
@@ -13,10 +21,11 @@ class Category(models.Model):
 
 class Post(models.Model):
     titulo = models.CharField(max_length=255)
+    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255, default= ("Publicaciones"))
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     contenido = models.TextField()
-    post_date = models.DateField(auto_now_add=True)
+    post_date = models.DateTimeField(auto_now_add=True)
     categoria = models.CharField(max_length=255, default="coding")
     likes = models.ManyToManyField(User, related_name= "blog_posts")
 
@@ -29,3 +38,12 @@ class Post(models.Model):
     def get_absolute_url (self):
         #return reverse('article-detail', args = (str(self.id)) )
         return reverse("home")
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    contenido = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.post.titulo, self.name)

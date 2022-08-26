@@ -1,5 +1,7 @@
 from django import forms
-from .models import Post, Category
+from .models import Post, Category, Comment
+from django import forms
+from django.db.models import fields
 
 
 choices = Category.objects.all().values_list("name", "name")
@@ -11,7 +13,7 @@ for item in choices:
 class PostForm (forms.ModelForm):
     class Meta:
         model = Post
-        fields = ("titulo", "author", "categoria", "contenido")
+        fields = ("titulo", "author", "categoria", "contenido", "header_image")
 
         widgets = {
             'titulo': forms.TextInput(attrs= {"class": "form-control", "placeholder": "Ingrese el Título..."}),
@@ -33,4 +35,13 @@ class EditForm (forms.ModelForm):
             #'author': forms.Select(attrs= {"class": "form-control"}),
             'categoria': forms.Select(choices= choice_list, attrs= {"class": "form-control"}),
             'contenido': forms.Textarea(attrs= {"class": "form-control", "placeholder"  : "Ingrese el Texto..."})
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("name", "contenido")
+        widgets = {
+            'name': forms.TextInput(attrs= {"class": "form-control", "placeholder": "Ingrese su nombre..."}),
+            'contenido': forms.Textarea(attrs= {"class": "form-control", "placeholder"  : "Ingrese el texto..."})
         }

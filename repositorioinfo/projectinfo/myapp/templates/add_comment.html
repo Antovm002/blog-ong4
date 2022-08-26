@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {%extends 'base.html' %}
+    {%block title%} Agregar un comentario {%endblock%}
+    {%block content%}
+    {% load crispy_forms_tags %}
+
+        <h1 class="alert alert-success">Añade un comentario!</h1>
+        <div class="form-group"></div>
+            <table>
+        <form method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+            </table>
+            <button class="btn btn-dark">Comentar</button>
+        </div>
+        <br>
+        
+    {%endblock%}
+
+</body>
+</html>
+
