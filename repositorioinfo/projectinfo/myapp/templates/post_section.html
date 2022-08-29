@@ -12,9 +12,6 @@
     {%block title%} Crea nueva pubicación! {%endblock%}
     {%block content%}
     {% load crispy_forms_tags %}
-
-    {% if user.is_authenticated %}
-
     <h1 class="alert alert-success">Añadir publicación</h1>
     <div class="form-group"></div>
     
@@ -34,12 +31,6 @@
         var name = "{{ user.id }}";
         document.getElementById("admin").value = name;
     </script>
-
-    {% else %}
-
-    <h1>Inicie sesión para realizar esta acción...</h1>
-
-    {% endif %}
 
     {%endblock%}
 

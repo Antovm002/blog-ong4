@@ -1,11 +1,12 @@
 from urllib import request
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import ContextPopException
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category, Comment
 from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+from .decorators import decorator_admin_protect
 
 
 #def home (request):
@@ -71,9 +72,10 @@ class AddPost(CreateView):
     model = Post
     form_class = PostForm
     template_name = "post_section.html"
-    def get_context_data(self, *atgs, **kwargs):
+    @decorator_admin_protect
+    def get_context_data(self, *args, **kwargs):
         categoria_menu = Category.objects.all()
-        context = super(AddPost, self).get_context_data(*atgs, **kwargs)
+        context = super(AddPost, self).get_context_data(*args, **kwargs)
         context["categoria_menu"] = categoria_menu
         return context
     #fields = ("titulo", "author", "contenido")
@@ -82,6 +84,9 @@ class AddComment(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = "add_comment.html"
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs["pk"]
+        return super().form_valid(form)
     #fields = "__all__"
     success_url = reverse_lazy("home")
 
@@ -90,6 +95,7 @@ class AddCategory(CreateView):
     #form_class = PostForm
     fields = "__all__"
     template_name = "add_category.html"
+    @decorator_admin_protect
     def get_context_data(self, *atgs, **kwargs):
         categoria_menu = Category.objects.all()
         context = super(AddCategory, self).get_context_data(*atgs, **kwargs)

@@ -1,0 +1,30 @@
+Este en un proyecto hecho totalmente en Python con el framework de Django y MySQL Worbench para base de datos, el mismo está montado en Heroku (link: ###).
+La aplicación fue montada en un total de 6/8 horas diarias desde la fecha: Domingo 31 de Julio de 2022 hasta la fecha: Lunes 29 de Agosto 2022 con un total de 180hs aproximadamente.
+Gran parte del tiempo se ocupo para propositos de investigación y definición de la estructura o MVT.
+
+Información:
+    Si se quiere trabajar localmente, este proyecto esta hecho sobre VSC, asi que se debe tener instalado el mismo, una vez instalado VSC se debera instalar python, Django y configurado la BBDD con la Información de su BBDD.
+    Para encender el entorno se debe ingresar:  informatorio_2022\blogong4\entornoinfo\Scripts>activate
+    Una vez encendido el entorno ya puede empezar a trabajar sobre los cambios que desee en el proyecto!
+
+Sumario:
+    180Hs de desarrollo.
+    Python y Django para el backend.
+    JS, CSS y HTML para el frontend.
+    CRUD basico.
+    Se busco la funcionalidad sobre la estetica.
+    Validación de sesión iniciada.
+    Programa montado en Heroku.
+
+Librerias:
+    Bootsrap.
+    Django.
+
+No se pudo cumplir:
+    Generar una sección de archivos descargables.
+    Validar Usuario como administrador o usuario común.
+    Falta de estetica para facilitar su utilización al usuario.
+    
+
+
+

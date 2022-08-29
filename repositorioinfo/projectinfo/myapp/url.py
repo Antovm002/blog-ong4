@@ -13,5 +13,5 @@ urlpatterns = [
    path('category_list/', CategoryList, name="category_list"),
    path('like/<int:pk>', LikeView, name="like_post"),
    path('article/<int:pk>/comment/', AddComment.as_view(), name="add_comment"),
-   path('info/', Info, name="info")
+   path('info/', Info, name="info"),
 ]

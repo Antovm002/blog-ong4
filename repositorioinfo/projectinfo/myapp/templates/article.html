@@ -7,28 +7,31 @@
 </head>
 <body>
     {%extends 'base.html' %}
+
     
     {%block title%} {{post.title_tag}} {%endblock%}
 
     {%block content%}
 
         <h1 class="alert alert-primary">{{post.titulo}}</h1>
-        <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
+
+        <div class="card">
+            <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
 
             {% if user.is_authenticated%}
                 {% if user.id == post.author.id %}
-                    <a href="{% url 'update' post.pk %}">- | Editar |</a></small>
-                    <small><a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
+                    <a href="{% url 'update' post.pk %}">- | Editar |</a>
+                    <a href="{% url 'delete' post.pk %}">Eliminar |</a></small><br/>
                 {% endif %}
             
             {% endif %}
-
+            <img class="card-img-top" src="{{ post.header_image.url }}" alt="Card image cap" style=" align-self:center; width: 30vh;">
+            <div class="card-body">
+                <p class="card-text">{{post.contenido}}</p>
+            </div>
+        </div>
         <br>
-        {% if post.header_image %}
-            <img src="{{ post.header_image.url }}">
-        {% endif %}
-        <br>
-        {{post.contenido}}
+        
         <br>
         <hr size="8px" color="gray"/>
         
@@ -42,7 +45,7 @@
 
             {% else %}
 
-                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-success">Me gusta</button>
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary">Me gusta</button>
                 
             {% endif %}
             
@@ -53,23 +56,29 @@
             |  {{ total_likes }} Me gusta
         </form>
         <hr size="8px" color="gray"/>
-        
-        <h2>Comentarios:</h2>
+        <div class="card">
+            <div class="card-header">
+                <h2>Comentarios:</h2>
+            </div>
+            <div class="card-body">
+                {% if not post.comments.all %}
+                <p class="card-text">Aun no hay comentarios...</p>
+                {% else %}
+                    {% for comment in post.comments.all %}
+                        <p class="card-text">
+                            <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+                            <br>
+                            {{ comment.contenido }}
+                            <br><br>
+                        </p>
+                    {% endfor %}
+                {% endif %}
+              
+              <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Añade un comentario!</a>
+            </div>
+          </div>
 
-        <a href="{% url 'add_comment' post.pk %}">Añade un comentario..</a>
         <br>
-        {% if not post.comments.all %}
-            Aun no hay comentarios...
-
-        {% else %}
-            {% for comment in post.comments.all %}
-                <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
-                <br>
-                {{ comment.body }}
-
-                <br><br>
-            {% endfor %}
-        {% endif %}
     {%endblock%}
 </body>
 </html>
