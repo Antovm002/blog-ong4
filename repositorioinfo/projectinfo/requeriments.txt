@@ -5,7 +5,7 @@ Gran parte del tiempo se ocupo para propositos de investigación y definición d
 Información:
     Si se quiere trabajar localmente, este proyecto esta hecho sobre VSC, asi que se debe tener instalado el mismo, una vez instalado VSC se debera instalar python, Django y configurado la BBDD con la Información de su BBDD.
     Para encender el entorno se debe ingresar:  informatorio_2022\blogong4\entornoinfo\Scripts>activate
-    Una vez encendido el entorno ya puede empezar a trabajar sobre los cambios que desee en el proyecto!
+    Una vez encendido el entorno ya puede empezar a trabajar sobre los cambios que desee en el proyecto.
 
 Sumario:
     180Hs de desarrollo.
